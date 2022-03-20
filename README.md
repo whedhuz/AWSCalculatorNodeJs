@@ -12,9 +12,10 @@ An error will be returned as 400 status code when:
 
 The calculator is naive because it only looks at the integer value of the input without rounding, and result of division is limited to 10 decimal point precision;
 
-URL: https://9wpjn94sjk.execute-api.ap-southeast-2.amazonaws.com/Dev/Calculator
-WITH APIKEY: *Secret*
-
+Sample URL:
+https://9wpjn94sjk.execute-api.ap-southeast-2.amazonaws.com/Dev/Calculator?number1=3&number2=2&operation=ADD
+WITH APIKEY: 
+*Secret*
 
 Assumptions
 ------------------------------
