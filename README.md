@@ -28,19 +28,18 @@ Assumptions
 Risks
 ------------------------------
 1. The service is limited to the maximum concurrent number of APIGateway and Lambda available
-2. Solution is deployed manually, any forgotten code update may break the deployment.
+2. Solution is deployed manually via AWS Console, any forgotten code update will break the new deployment and it will be hard to find the missing update for large number of file changes.
 3. Deployment does not use ALIAS, hence any error in the newly deployed code will reflect to PRODUCTION
-
 
 Improvements
 ------------------------------
-1. Deployment can be automated with CloudFormation, for now make things works by manual deployment from AWS Console
-2. Infrastructure can be put as code using cdk
+1. Deployment should be through CI/CD pipeline via AWS CodePipeline
+2. Infrastructure can be put as code using cdk and CloudFormation
 3. API Gateway name can be fronted by a custom domain name via AWS Route53
 4. Calculator functionallity can be improved in different ways :
 4.1. Include floating point calculations and accept precisions
 4.2. Handle large number exceptions
-5. Lambda can use ALIAS to have different stages of deployment
+5. Lambda should use ALIAS to have different stages of deployment
 
 
 Tech Used
