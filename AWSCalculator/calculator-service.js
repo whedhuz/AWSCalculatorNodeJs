@@ -1,7 +1,8 @@
 const Calculator = require("./calculator");
 
 module.exports = class CalculatorService {
-  validOperations = ["ADD"];
+  // Should be changed to enums
+  validOperations = ["ADD", "MIN", "MUL", "DIV"];
   #calculator;
 
   constructor() {
@@ -15,17 +16,29 @@ module.exports = class CalculatorService {
 
     let number1 = inputs.number1;
     let number2 = inputs.number2;
+    let error = null;
     let result = 0;
 
     switch (inputs.operation) {
       case "ADD":
         result = this.#calculator.add(number1, number2);
         break;
+      case "MIN":
+        result = this.#calculator.subtract(number1, number2);
+        break;
+      case "MUL":
+        result = this.#calculator.multiply(number1, number2);
+        break;
+      case "DIV":
+        let divOutput = this.#calculator.tryDivide(number1, number2);
+        error = divOutput.error;
+        result = divOutput.result;
+        break;
       default:
         return { error: "Invalid operation", result: null };
     }
 
-    return { error: null, result: result };
+    return { error: error, result: result };
   }
 
   // Check if the inputs contain expected data structure and the given operation is in the expected list of operations

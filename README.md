@@ -3,15 +3,17 @@
 Description
 ------------------------------
 
-This is a simple integer calculator service using AWS Lambda and AWS API Gateway.
+This is a simple naive calculator service using AWS Lambda and AWS API Gateway.
 Data is expected to have 3 query parameters: 2 integer numbers and the operation.
 An error will be returned as 400 status code when:
 1. the operation is not in the expected value of: ADD, MIN, MUL, DIV.
 2. request does not provide 2 numbers
 3. trying to divide by 0
 
+The calculator is naive because it only looks at the integer value of the input without rounding, and result of division is limited to 10 decimal point precision;
 
-URL:
+URL: https://9wpjn94sjk.execute-api.ap-southeast-2.amazonaws.com/Dev/Calculator
+WITH APIKEY: *Secret*
 
 
 Assumptions
@@ -22,6 +24,12 @@ Assumptions
 3. Used Lambda for easier plug and play rather than using a EC2 as this is a very simple and isolated functionality
 4. We want MVP of a simpliest calculator, hence we only deal with integer
 
+
+Risks
+------------------------------
+1. The service is limited to the maximum concurrent number of APIGateway and Lambda available
+2. Solution is deployed manually, any forgotten code update may break the deployment.
+3. Deployment does not use ALIAS, hence any error in the newly deployed code will reflect to PRODUCTION
 
 
 Improvements
