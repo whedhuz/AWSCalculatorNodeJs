@@ -1,11 +1,22 @@
+const CalculatorService = require("./calculator-service");
+
 exports.handler = async (event) => {
   console.info("EVENT\n" + JSON.stringify(event, null, 2));
 
-  var parameters = event.queryStringParameters;
+  var inputs = event.queryStringParameters;
 
-  const response = {
+  let service = new CalculatorService();
+  let output = service.calculate(inputs);
+
+  if (output.error) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify(output.error),
+    };
+  }
+
+  return {
     statusCode: 200,
-    body: JSON.stringify("Hello from Lambda!"),
+    body: output.result,
   };
-  return response;
 };

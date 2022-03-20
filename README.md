@@ -32,6 +32,7 @@ Improvements
 4. Calculator functionallity can be improved in different ways :
 4.1. Include floating point calculations and accept precisions
 4.2. Handle large number exceptions
+5. Lambda can use ALIAS to have different stages of deployment
 
 
 Tech Used
